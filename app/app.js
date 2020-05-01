@@ -3,7 +3,11 @@ const generateBtn = document.querySelector(".generate");
 const colorDivs = document.querySelectorAll(".color");
 const sliders = document.querySelectorAll("input[type='range']");
 const currentHexes = document.querySelectorAll(".color h2");
+const popup = document.querySelector(".copy-container");
 let initialColors;
+const adjustBtns = document.querySelectorAll(".adjust");
+const closeAdjustments = document.querySelectorAll(".close-adjustment");
+const sliderPanels = document.querySelectorAll(".sliders");
 
 //FUNCTIONS
 
@@ -27,6 +31,10 @@ function randomColors() {
 
     //Check contrast to change text color
     checkTextContrast(randomHex, hexText);
+    const icons = colorDiv.querySelectorAll(".controls button");
+    for (icon of icons) {
+      checkTextContrast(randomHex, icon);
+    }
 
     //Initial colorize sliders
     const color = chroma(randomHex);
@@ -128,6 +136,32 @@ function resetInputs() {
   });
 }
 
+function copyToClipboard(hex) {
+  //Copy function
+  const eph = document.createElement("textarea");
+  eph.value = hex.innerText;
+  document.body.appendChild(eph);
+  eph.select();
+  document.execCommand("copy");
+  document.body.removeChild(eph);
+  //Copy popup
+  popup.classList.add("active");
+  popup.children[0].classList.add("active");
+}
+
+function openFiltersPanel(index) {
+  const panel = sliderPanels[index];
+  panel.classList.toggle("active");
+}
+
+function closeFiltersPanel(index) {
+  const panel = sliderPanels[index];
+  panel.classList.remove("active");
+}
+
+//INITIALIZE PALETTE
+randomColors();
+
 //EVENT LISTENERS
 generateBtn.addEventListener("click", randomColors);
 
@@ -138,5 +172,28 @@ sliders.forEach((slider) => {
 colorDivs.forEach((div, index) => {
   div.addEventListener("change", () => {
     updateTextUI(index);
+  });
+});
+
+currentHexes.forEach((hex) => {
+  hex.addEventListener("click", () => {
+    copyToClipboard(hex);
+  });
+});
+
+popup.addEventListener("click", () => {
+  popup.classList.remove("active");
+  popup.children[0].classList.remove("active");
+});
+
+adjustBtns.forEach((btn, index) => {
+  btn.addEventListener("click", () => {
+    openFiltersPanel(index);
+  });
+});
+
+closeAdjustments.forEach((close, index) => {
+  close.addEventListener("click", () => {
+    closeFiltersPanel(index);
   });
 });
