@@ -6,6 +6,7 @@ const currentHexes = document.querySelectorAll(".color h2");
 const popup = document.querySelector(".copy-container");
 let initialColors;
 const adjustBtns = document.querySelectorAll(".adjust");
+const lockBtns = document.querySelectorAll(".lock");
 const closeAdjustments = document.querySelectorAll(".close-adjustment");
 const sliderPanels = document.querySelectorAll(".sliders");
 
@@ -23,7 +24,12 @@ function randomColors() {
     const randomHex = generateHex();
     const hexText = colorDiv.children[0];
 
-    initialColors.push(chroma(randomHex).hex());
+    if (colorDiv.classList.contains("locked")) {
+      initialColors.push(hexText.innerText);
+      return;
+    } else {
+      initialColors.push(chroma(randomHex).hex());
+    }
 
     //Add color to bg and hex text
     colorDiv.style.background = randomHex;
@@ -159,6 +165,13 @@ function closeFiltersPanel(index) {
   panel.classList.remove("active");
 }
 
+//Switch classes for the main function to know if div is locked
+function lockColor(btn, index) {
+  colorDivs[index].classList.toggle("locked");
+  btn.children[0].classList.toggle("fa-lock-open");
+  btn.children[0].classList.toggle("fa-lock");
+}
+
 //INITIALIZE PALETTE
 randomColors();
 
@@ -195,5 +208,11 @@ adjustBtns.forEach((btn, index) => {
 closeAdjustments.forEach((close, index) => {
   close.addEventListener("click", () => {
     closeFiltersPanel(index);
+  });
+});
+
+lockBtns.forEach((btn, index) => {
+  btn.addEventListener("click", () => {
+    lockColor(btn, index);
   });
 });
