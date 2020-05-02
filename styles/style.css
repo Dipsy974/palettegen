@@ -202,7 +202,9 @@ button:focus {
   cursor: pointer;
 }
 
-.copy-container {
+.copy-container,
+.save-container,
+.library-container {
   position: fixed;
   top: 0%;
   left: 0%;
@@ -224,12 +226,16 @@ button:focus {
   transition: all 0.5s ease-in-out;
 }
 
-.copy-container.active {
+.copy-container.active,
+.save-container.active,
+.library-container.active {
   opacity: 1;
   pointer-events: all;
 }
 
-.copy-popup {
+.copy-popup,
+.save-popup,
+.library-popup {
   background: white;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -256,13 +262,115 @@ button:focus {
   min-height: 30vh;
 }
 
-.copy-popup.active {
+.copy-popup.active,
+.save-popup.active,
+.library-popup.active {
   -webkit-transform: translateY(0rem);
           transform: translateY(0rem);
 }
 
-.copy-popup h4 {
+.copy-popup h4,
+.save-popup h4,
+.library-popup h4 {
   font-size: 2rem;
-  color: #336e75;
+  color: #26393b;
+  margin: 2rem;
+}
+
+.save-popup input {
+  height: 2rem;
+  width: 50%;
+}
+
+.close-save,
+.close-library {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: white;
+  border: none;
+  border-top-right-radius: 1rem;
+  padding: 0.5rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.submit-save {
+  padding: 1rem 2rem;
+  margin: 2rem;
+  background: #26393b;
+  color: white;
+  border-radius: 1rem;
+  border: none;
+  cursor: pointer;
+}
+
+.library-popup {
+  min-width: 40%;
+  max-height: 50%;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  overflow-y: scroll;
+}
+
+.library-popup::-webkit-scrollbar {
+  width: 10px;
+}
+
+.library-popup::-webkit-scrollbar-thumb {
+  background: #26393b;
+  border-radius: 10px;
+}
+
+.library-popup::-webkit-scrollbar-thumb:hover {
+  background: #36383a;
+}
+
+.custom-palette {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  width: 100%;
+  padding: 2rem;
+}
+
+.custom-palette h5 {
+  color: #26393b;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+
+.small-preview {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+
+.small-preview div {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  height: 5rem;
+}
+
+.pick-palette-btn {
+  height: 5rem;
+  border: none;
+  cursor: pointer;
+  padding: 1rem;
+  font-size: 1.2rem;
+  color: white;
+  background: #26393b;
 }
 /*# sourceMappingURL=style.css.map */

@@ -158,7 +158,9 @@ button:focus {
   }
 }
 
-.copy-container {
+.copy-container,
+.save-container,
+.library-container {
   position: fixed;
   top: 0%;
   left: 0%;
@@ -178,7 +180,9 @@ button:focus {
   }
 }
 
-.copy-popup {
+.copy-popup,
+.save-popup,
+.library-popup {
   background: white;
   display: flex;
   flex-direction: column;
@@ -196,6 +200,85 @@ button:focus {
   }
   h4 {
     font-size: 2rem;
-    color: #336e75;
+    color: #26393b;
+    margin: 2rem;
   }
+}
+
+.save-popup input {
+  height: 2rem;
+  width: 50%;
+}
+
+.close-save,
+.close-library {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: white;
+  border: none;
+  border-top-right-radius: 1rem;
+  padding: 0.5rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.submit-save {
+  padding: 1rem 2rem;
+  margin: 2rem;
+  background: #26393b;
+  color: white;
+  border-radius: 1rem;
+  border: none;
+  cursor: pointer;
+}
+
+.library-popup {
+  min-width: 40%;
+  max-height: 50%;
+  justify-content: flex-start;
+  overflow-y: scroll;
+  &::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #26393b;
+    border-radius: 10px;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: rgb(54, 56, 58);
+  }
+}
+
+.custom-palette {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 100%;
+  padding: 2rem;
+  h5 {
+    color: #26393b;
+    flex: 1;
+  }
+}
+
+.small-preview {
+  display: flex;
+  flex: 1;
+  div {
+    flex: 1;
+    height: 5rem;
+  }
+}
+
+.pick-palette-btn {
+  height: 5rem;
+  border: none;
+  cursor: pointer;
+  padding: 1rem;
+  font-size: 1.2rem;
+  color: white;
+  background: #26393b;
 }
